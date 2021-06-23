@@ -15,7 +15,7 @@ const eventos : Event[] = [
     },
     {
         id: "3",
-        title: "Chupar pene",
+        title: "Medicina",
         start: "2021-06-25T09:30:30"
     }
 ]
