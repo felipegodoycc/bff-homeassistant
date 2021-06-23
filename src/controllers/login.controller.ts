@@ -14,4 +14,9 @@ export class UserController extends Controller {
         const userId = req.params.id;
         await this.getResponse(this.userService.getUser(userId))(res);
     }
+
+    async createuser(req: Request, res: Response){
+        const body = req.body;
+        await this.getResponse(this.userService.createUser(body))(res);
+    }
 }
