@@ -32,7 +32,7 @@ export class UserService {
             const usuarios = await this.redisService.getObject<User[]>("users");
             const user = usuarios.find( usr => usr.username === body.username);
             if(user) return reject("Usuario ya existe");
-            usuarios.push(body);
+            usuarios.push({id: usuarios.length + 1, ...body});
             await this.redisService.setObject("users", usuarios);
             const { password, ...createdUser} = body;
             return resolve(createdUser);
