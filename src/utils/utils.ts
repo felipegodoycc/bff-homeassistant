@@ -4,7 +4,7 @@ import { HAEntity, HASensorAttributes, HATrackerAttributes } from "../types/enti
 
 export const HAConfig = {
     clima: "weather.casa",
-    tracker: "device_tracker.mi_10",
+    tracker: "device_tracker.mi_10_2",
     persona: "person.felipe",
     sensores:  [
         "sensor.temperatura",
