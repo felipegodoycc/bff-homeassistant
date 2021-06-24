@@ -93,5 +93,5 @@ export function reducePoints(data: Array<SimplePoint>){
         }
         return acc        
     }, [] as SimplePoint[])
-    return reducePoints
+    return reducedPoints
 }
