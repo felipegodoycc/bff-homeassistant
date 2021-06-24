@@ -26,4 +26,19 @@ export class EventService {
             resolve(ev);
         })
     }
+
+    async editEvent(id: string, evento: Event){
+        return new Promise( async (resolve, reject) => {
+            const eventos = await this.redisService.getObject<Event[]>("events");
+            const ev = eventos.findIndex( (el) => el.id === id);
+            if(!ev) return reject("Evento no encontrado");
+            const newEventos = [...eventos];
+            const updatedEvent = Object.assign(newEventos[ev], evento);
+            newEventos[ev] = updatedEvent
+            await this.redisService.setObject("events", newEventos);
+            resolve(updatedEvent);
+        })
+    }
+
+
 }

@@ -14,4 +14,10 @@ export class EventController extends Controller {
         const body = req.body;
         this.getResponse(this.eventService.addEvent(body))(res);
     }
+
+    async editEvent(req: Request, res: Response){
+        const id = req.params.id;
+        const body = req.body;
+        this.getResponse(this.eventService.editEvent(id,body))(res);
+    }
 }

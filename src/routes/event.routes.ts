@@ -8,5 +8,6 @@ const controller = new EventController();
 
 router.get("/eventos", (req,res) => controller.getEventos(req,res))
 router.post("/eventos", (req,res) => controller.createEvent(req,res))
+router.put("/eventos", (req,res) => controller.editEvent(req,res))
 
 export default router;
