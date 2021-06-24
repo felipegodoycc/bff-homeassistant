@@ -1,6 +1,6 @@
 import axios, { AxiosPromise } from "axios";
 import { Response } from "express";
-import { HAEntity, HASensorAttributes, HATrackerAttributes } from "../types/entity";
+import { HAEntity, HASensorAttributes, HATrackerAttributes, SimplePoint } from "../types/entity";
 
 export const HAConfig = {
     clima: "weather.casa",
@@ -83,4 +83,12 @@ export function cleanLocation(data: Array<HAEntity<HATrackerAttributes>[]>){
         })
     )
     return points;
+}
+
+export function reducePoints(data: Array<SimplePoint>){
+    const reducedPoints = data.reduce( (acc, item, index) => {
+        if((acc[acc.length - 1] as SimplePoint).status === "home") return acc
+        acc.push(item)
+        return acc
+    }, [] as SimplePoint[])
 }

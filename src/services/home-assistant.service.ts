@@ -1,6 +1,6 @@
 import axios from "axios";
 import { HAEntity, HASensorAttributes } from "../types/entity";
-import { cleanEntitys, cleanLocation, compose, filterEntitys, HAConfig } from "../utils/utils";
+import { cleanEntitys, cleanLocation, compose, filterEntitys, HAConfig, reducePoints } from "../utils/utils";
 
 export class HomeAssistantService {
 
@@ -19,7 +19,7 @@ export class HomeAssistantService {
                 filter_entity_id: entityId
             }
         });
-        return compose(cleanLocation)(data);
+        return compose(cleanLocation, reducePoints)(data);
     }
 
     async getStatusById(entity_id:string){

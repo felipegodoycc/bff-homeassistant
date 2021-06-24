@@ -49,3 +49,10 @@ export class HATrackerAttributes extends BaseAttributes {
     speed: number
     vertical_accuracy: number 
 }
+
+export interface SimplePoint {
+    latitude: string,
+    longitude: string,
+    timestamp: string,
+    status: string
+}
