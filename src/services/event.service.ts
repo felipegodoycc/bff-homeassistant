@@ -31,7 +31,7 @@ export class EventService {
         return new Promise( async (resolve, reject) => {
             const eventos = await this.redisService.getObject<Event[]>("events");
             const ev = eventos.findIndex( (el) => el.id === id);
-            if(!ev) return reject("Evento no encontrado");
+            if(ev < 0) return reject("Evento no encontrado");
             const newEventos = [...eventos];
             const updatedEvent = Object.assign(newEventos[ev], evento);
             newEventos[ev] = updatedEvent
