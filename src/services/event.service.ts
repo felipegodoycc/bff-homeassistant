@@ -32,12 +32,22 @@ export class EventService {
             const eventos = await this.redisService.getObject<Event[]>("events");
             const ev = eventos.findIndex( (el) => el.id === id);
             if(ev < 0) return reject("Evento no encontrado");
-            const newEventos = [...eventos];
             const updatedEvent = Object.assign(newEventos[ev], evento);
-            newEventos[ev] = updatedEvent
-            await this.redisService.setObject("events", newEventos);
+            eventos[ev] = updatedEvent
+            await this.redisService.setObject("events", eventos);
             resolve(updatedEvent);
         })
+    }
+
+    async deleteEvent(id: string){
+        return new Promise( async (resolve, reject) => {
+            const eventos = await this.redisService.getObject<Event[]>("events");
+            const ev = eventos.findIndex( (el) => el.id === id);
+            if(ev < 0) return reject("Evento no encontrado");
+            eventos.splice(ev, 1);
+            await this.redisService.setObject("events", eventos);
+            resolve({})
+        })        
     }
 
 

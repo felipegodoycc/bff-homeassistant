@@ -20,4 +20,9 @@ export class EventController extends Controller {
         const body = req.body;
         this.getResponse(this.eventService.editEvent(id,body))(res);
     }
+
+    async deleteEvent(req: Request, res: Response){
+        const id = req.params.id;
+        this.getResponse(this.eventService.deleteEvent(id))(res);
+    }
 }
