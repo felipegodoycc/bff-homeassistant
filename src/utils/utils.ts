@@ -44,7 +44,7 @@ export class Controller {
             });
         } catch (error) {
             console.log("Error: ", error)
-            return res.json({
+            return res.status(400).json({
                 ok: false,
                 payload: {
                     error
