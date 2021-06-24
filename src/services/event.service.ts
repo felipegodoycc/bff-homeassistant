@@ -32,7 +32,7 @@ export class EventService {
             const eventos = await this.redisService.getObject<Event[]>("events");
             const ev = eventos.findIndex( (el) => el.id === id);
             if(ev < 0) return reject("Evento no encontrado");
-            const updatedEvent = Object.assign(newEventos[ev], evento);
+            const updatedEvent = Object.assign(eventos[ev], evento);
             eventos[ev] = updatedEvent
             await this.redisService.setObject("events", eventos);
             resolve(updatedEvent);
