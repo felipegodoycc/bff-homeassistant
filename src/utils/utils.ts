@@ -15,6 +15,7 @@ export const HAConfig = {
         "sensor.mi_10_battery_temperature",
         "sensor.mi_10_ubicacion_geocodificada",
         "binary_sensor.movimiento_pasillo",
+        "binary_sensor.movimiento_patio",
         "binary_sensor.sensor_puerta"
     ],
     luces:{
@@ -67,6 +68,7 @@ export function cleanEntitys(data: HAEntity<HASensorAttributes>[]){
             entity_id: entity.entity_id, 
             state: entity.state, 
             type: entity.entity_id.split('.')[0],
+            device_class: entity.attributes?.device_class,
             friendly_name: entity.attributes?.friendly_name,
             icon: entity.attributes?.icon
         })
