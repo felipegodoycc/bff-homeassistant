@@ -88,7 +88,6 @@ export function cleanLocation(data: Array<HAEntity<HATrackerAttributes>[]>){
 }
 
 export function reducePoints(data: Array<SimplePoint>){
-    console.log("DATA: ", data)
     const reducedPoints = data.reduce( (acc, item, index) => {
         const lastPoint = acc[acc.length - 1];
         if( lastPoint?.status === item.status && item.status === "home"){
