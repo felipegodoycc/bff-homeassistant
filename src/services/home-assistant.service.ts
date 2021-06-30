@@ -19,7 +19,7 @@ export class HomeAssistantService {
                 filter_entity_id: entityId
             }
         });
-        return compose(cleanLocation)(data);
+        return compose(cleanLocation, reducePoints)(data);
     }
 
     async getStatusById(entity_id:string){
