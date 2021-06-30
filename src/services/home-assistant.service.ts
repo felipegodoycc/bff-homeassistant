@@ -13,13 +13,13 @@ export class HomeAssistantService {
         }
     })
 
-    async getLastHistory(entityId: string){
-        const { data } = await this.httpClient.get("/history/period", {
+    async getLastHistory(entityId: string, date: string = ''){
+        const { data } = await this.httpClient.get(`/history/period/${date}`, {
             params: {
                 filter_entity_id: entityId
             }
         });
-        return compose(cleanLocation)(data);
+        return compose(cleanLocation, reducePoints)(data);
     }
 
     async getStatusById(entity_id:string){

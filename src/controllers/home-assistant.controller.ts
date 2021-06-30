@@ -7,7 +7,8 @@ export class HomeAssistantController extends Controller {
     private homeAssistantService = new HomeAssistantService();
 
     async getHistorico(req: Request, res: Response){
-        await this.getResponse(this.homeAssistantService.getLastHistory(HAConfig.tracker))(res);
+        const datetime = req.params.datetime;
+        await this.getResponse(this.homeAssistantService.getLastHistory(HAConfig.tracker, datetime))(res);
     }
 
     async getClima(req: Request, res: Response){
