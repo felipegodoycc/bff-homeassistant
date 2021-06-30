@@ -10,13 +10,9 @@ export const HAConfig = {
         "sensor.temperatura",
         "sensor.humedad",
         "sensor.presion",
-        "sensor.mi_10_nivel_de_la_bateria",
-        "sensor.mi_10_estado_de_la_bateria",
-        "sensor.mi_10_battery_temperature",
-        "sensor.mi_10_ubicacion_geocodificada",
         "binary_sensor.movimiento_pasillo",
         "binary_sensor.movimiento_patio",
-        "binary_sensor.sensor_puerta"
+        "binary_sensor.sensor_puerta",     
     ],
     luces:{
         items: [
@@ -29,6 +25,12 @@ export const HAConfig = {
             "switch.13106300600194ddfe39_1",
         ]
     },
+    phoneSensors: [
+        "sensor.mi_10_nivel_de_la_bateria_2",
+        "sensor.mi_10_geocoded_location",
+        "sensor.mi_10_estado_de_la_bateria_2",
+        "sensor.mi_10_temperatura_de_la_bateria"
+    ],
     allowedStates: ["turn_on","turn_off","toggle"]
 }
 
@@ -60,6 +62,10 @@ export const compose = (...fns: any[]) => (x: any) => fns.reduce( (y,f) => f(y),
 
 export function filterEntitys(data: HAEntity<HASensorAttributes>[]){
     return data.filter( entity => (HAConfig.sensores.includes(entity.entity_id) || HAConfig.luces.items.includes(entity.entity_id) || HAConfig.switch.items.includes(entity.entity_id)))
+}
+
+export function filterPhoneEntitys(data: HAEntity<HASensorAttributes>[]){
+    return data.filter( entity => (HAConfig.phoneSensors.includes(entity.entity_id)))
 }
 
 export function cleanEntitys(data: HAEntity<HASensorAttributes>[]){

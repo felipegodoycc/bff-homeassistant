@@ -1,6 +1,6 @@
 import axios from "axios";
 import { HAEntity, HASensorAttributes } from "../types/entity";
-import { cleanEntitys, cleanLocation, compose, filterEntitys, HAConfig, reducePoints } from "../utils/utils";
+import { cleanEntitys, cleanLocation, compose, filterEntitys, filterPhoneEntitys, HAConfig, reducePoints } from "../utils/utils";
 
 export class HomeAssistantService {
 
@@ -30,6 +30,11 @@ export class HomeAssistantService {
     async getStatus(){
         const { data } = await this.httpClient.get<HAEntity<HASensorAttributes>[]>("/states");
         return compose(filterEntitys, cleanEntitys)(data);            
+    }
+
+    async getPhoneSensors(){
+        const { data } = await this.httpClient.get<HAEntity<HASensorAttributes>[]>("/states");
+        return compose(filterPhoneEntitys,cleanEntitys)(data);   
     }
 
     async setStatus(body: { entity_id: any; status: any; }, service: 'switch' | 'light'){

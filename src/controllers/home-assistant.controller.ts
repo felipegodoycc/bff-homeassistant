@@ -19,6 +19,10 @@ export class HomeAssistantController extends Controller {
         await this.getResponse(this.homeAssistantService.getStatus())(res);
     }
 
+    async getSensoresCelular(req: Request, res: Response){
+        await this.getResponse(this.homeAssistantService.getPhoneSensors())(res);
+    }
+
     async setStatusSwitch(req: Request, res: Response){
         const body = req.body;
         await this.getResponse(this.homeAssistantService.setStatus(body, 'switch'))(res);
