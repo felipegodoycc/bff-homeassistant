@@ -12,7 +12,8 @@ export const HAConfig = {
         "sensor.presion",
         "binary_sensor.movimiento_pasillo",
         "binary_sensor.movimiento_patio",
-        "binary_sensor.sensor_puerta",     
+        "binary_sensor.sensor_puerta",
+        "binary_sensor.sensor_humo"  
     ],
     luces:{
         items: [
@@ -82,6 +83,7 @@ export function cleanEntitys(data: HAEntity<HASensorAttributes>[]){
 }
 
 export function cleanLocation(data: Array<HAEntity<HATrackerAttributes>[]>){
+    console.log("Clean location: ", data);
     const points = data[0].map( entity => 
         ({
             latitude: entity.attributes.latitude,
@@ -94,6 +96,7 @@ export function cleanLocation(data: Array<HAEntity<HATrackerAttributes>[]>){
 }
 
 export function reducePoints(data: Array<SimplePoint>){
+    console.log("Reduce points: ", data);
     const reducedPoints = data.reduce( (acc, item, index) => {
         const lastPoint = acc[acc.length - 1];
         if( lastPoint?.status === item.status && item.status === "home"){
